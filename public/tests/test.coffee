@@ -16,11 +16,11 @@ describe "routes", ->
 
 describe "parsing", ->
 	it "Should parse + sentences", ->
-		results = main.parse("a = 2 + 4.")
+		results = main.parse("x = 33 - 5.")
 		expect(results[0].type).equal('=')
-		expect(results[0].right.type).equal("+")
-		expect(results[0].right.left.value).equal(2)
-		expect(results[0].right.right.value).equal(4)
+		expect(results[0].right.type).equal("-")
+		expect(results[0].right.left.value).equal(33)
+		expect(results[0].right.right.value).equal(5)
 	it "Should parse - sentences", ->
 		results = main.parse("p 2 - 4 - 5.")
 		expect(results[0].type).equal("P")
@@ -31,7 +31,7 @@ describe "parsing", ->
 		expect(results[0].value.right.value).equal(5)
 
 	it "Should parse if sentences", ->
-		results = main.parse("if a == 5 then b =1.")
+		results = main.parse("if vino == fidencio then bares = resuelta.")
 		expect(results[0].type).equal("IF")
 		expect(results[0].left.type).equal("==")
 		expect(results[0].right.type).equal("=")
