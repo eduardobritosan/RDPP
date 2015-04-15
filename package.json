@@ -1,10 +1,11 @@
 {
-    "name": "RDPP"
-  , "version": "0.0.1"
-  , "private": true
-  , "dependencies": {
-      "express": "2.5.8"
-    , "jade": ">= 0.0.1"
+  "name": "RDPP",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www.coffee",
+    "test" : "mocha --compilers coffee:coffee-script/register -R spec public/tests/test.coffee"
+
   },
   "dependencies": {
     "body-parser": "~1.12.0",

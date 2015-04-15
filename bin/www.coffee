@@ -1,22 +1,7 @@
-##!/usr/bin/env node
-
-###*
-# Module dependencies.
-###
 
 app = require('../app.coffee')
 debug = require('debug')('coffeepress:server')
 http = require('http')
-
-###*
-# Get port from environment and store in Express.
-###
-
-
-
-###*
-# Normalize a port into a number, string, or false.
-###
 
 normalizePort = (val) ->
   portl = parseInt(val, 10)
@@ -29,9 +14,7 @@ normalizePort = (val) ->
   false
 
 port = normalizePort(process.env.PORT or '3000')
-###*
-# Event listener for HTTP server "error" event.
-###
+
 
 onError = (error) ->
   if error.syscall != 'listen'
@@ -49,9 +32,6 @@ onError = (error) ->
       throw error
   return
 
-###*
-# Event listener for HTTP server "listening" event.
-###
 
 onListening = ->
   addr = server.address()
@@ -61,15 +41,8 @@ onListening = ->
 
 app.set 'port', port
 
-###*
-# Create HTTP server.
-###
 
 server = http.createServer(app)
-
-###*
-# Listen on provided port, on all network interfaces.
-###
 
 server.listen port
 server.on 'error', onError
