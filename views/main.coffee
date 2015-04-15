@@ -133,6 +133,99 @@ parse = (input) ->
             lookahead.value + "' near '" +
             input.substr(lookahead.from) + "'"
     return
+    #NUEVAS FUNCIONES
+
+  program = ->
+    result = block()
+    if lookahead and lookahead.type is "."
+      match "."
+    else
+      throw "Syntax Error. Expected '.' Remember to end your input with a ."
+    result
+
+  block = ->
+    ##ARRAY PARA EL RESULTADO DE CADA BLOQUE DE CODIGO
+    results = []
+
+    if lookahead and lookahead.type is "CONST"
+       match "CONST"
+
+       constant = ->
+         result = null
+         if lookahead and lookahead.type is "ID"
+           left =
+             type: "CONST"
+             value: lookahead.value
+           match "ID"
+           match "="
+           if lookahead and lookahead.type is "NUM"
+             right =
+               type: "NUM"
+               value: lookahead.value
+             match "NUM"
+           else # Error!
+             throw "Syntax Error. Expected NUM but found " +
+                   (if lookahead then lookahead.value else "end of input") +
+                   " near '#{input.substr(lookahead.from)}'"
+         else # Error!
+           throw "Syntax Error. Expected identifier but found " +
+                 (if lookahead then lookahead.value else "end of input") +
+                 " near '#{input.substr(lookahead.from)}'"
+         result =
+           type: "="
+           left: left
+           right: right
+         result
+       results.push constant()
+       while lookahead and lookahead.type is ","
+         match ","
+         results.push constant()
+       match ";"
+
+    if lookahead and lookahead.type is "VAR"
+       match "VAR"
+
+       variable = ->
+         result = null
+         if lookahead and lookahead.type is "ID"
+           result =
+             type: "VAR"
+             value: lookahead.value
+           match "ID"
+         else # Error!
+           throw "Syntax Error. Expected identifier but found " +
+                 (if lookahead then lookahead.value else "end of input") +
+                 " near '#{input.substr(lookahead.from)}'"
+         result
+
+       results.push variable()
+       while lookahead and lookahead.type is ","
+         match ","
+         results.push variable()
+       match ";"
+
+    procedure = ->
+      result = null
+      match "PROCEDURE"
+      if lookahead and lookahead.type is "ID"
+        value = lookahead.value
+        match "ID"
+        match ";"
+        result =
+          type: "PROCEDURE"
+          value: value
+          left: block()
+        match ";"
+      else # Error!
+        throw "Syntax Error. Expected identifier but found " +
+              (if lookahead then lookahead.value else "end of input") +
+              " near '#{input.substr(lookahead.from)}'"
+      result
+
+    while lookahead and lookahead.type is "PROCEDURE"
+      results.push procedure()
+    results.push statement()
+    results
 
   statements = ->
     result = [statement()]
@@ -263,100 +356,6 @@ parse = (input) ->
         (if lookahead then lookahead.value else "end of input") +
         " near '" + input.substr(lookahead.from) + "'"
     result
-
-    #NUEVAS FUNCIONES
-
-  program = ->
-    result = block()
-    if lookahead and lookahead.type is "."
-      match "."
-    else
-      throw "Syntax Error. Expected '.' Remember to end your input with a ."
-    result
-
-  block = ->
-    ##ARRAY PARA EL RESULTADO DE CADA BLOQUE DE CODIGO
-    results = []
-
-    if lookahead and lookahead.type is "CONST"
-       match "CONST"
-
-       constant = ->
-         result = null
-         if lookahead and lookahead.type is "ID"
-           left =
-             type: "CONST"
-             value: lookahead.value
-           match "ID"
-           match "="
-           if lookahead and lookahead.type is "NUM"
-             right =
-               type: "NUM"
-               value: lookahead.value
-             match "NUM"
-           else # Error!
-             throw "Syntax Error. Expected NUM but found " +
-                   (if lookahead then lookahead.value else "end of input") +
-                   " near '#{input.substr(lookahead.from)}'"
-         else # Error!
-           throw "Syntax Error. Expected identifier but found " +
-                 (if lookahead then lookahead.value else "end of input") +
-                 " near '#{input.substr(lookahead.from)}'"
-         result =
-           type: "="
-           left: left
-           right: right
-         result
-       results.push constant()
-       while lookahead and lookahead.type is ","
-         match ","
-         results.push constant()
-       match ";"
-
-    if lookahead and lookahead.type is "VAR"
-       match "VAR"
-
-       variable = ->
-         result = null
-         if lookahead and lookahead.type is "ID"
-           result =
-             type: "VAR"
-             value: lookahead.value
-           match "ID"
-         else # Error!
-           throw "Syntax Error. Expected identifier but found " +
-                 (if lookahead then lookahead.value else "end of input") +
-                 " near '#{input.substr(lookahead.from)}'"
-         result
-
-       results.push variable()
-       while lookahead and lookahead.type is ","
-         match ","
-         results.push variable()
-       match ";"
-
-    procedure = ->
-      result = null
-      match "PROCEDURE"
-      if lookahead and lookahead.type is "ID"
-        value = lookahead.value
-        match "ID"
-        match ";"
-        result =
-          type: "PROCEDURE"
-          value: value
-          left: block()
-        match ";"
-      else # Error!
-        throw "Syntax Error. Expected identifier but found " +
-              (if lookahead then lookahead.value else "end of input") +
-              " near '#{input.substr(lookahead.from)}'"
-      result
-
-    while lookahead and lookahead.type is "PROCEDURE"
-      results.push procedure()
-    results.push statement()
-    results
 
  #AHORA EMPEZAMOS POR PROGRAM!!
 
