@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www.coffee",
+    "start": "coffee bin/www.coffee",
     "test" : "mocha --compilers coffee:coffee-script/register -R spec public/tests/test.coffee"
 
   },
