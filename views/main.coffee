@@ -11,6 +11,7 @@ main = ()->
 window.onload = ()->
   PARSE.onclick = main
 
+
 Object.constructor::error = (message, t) ->
   t = t or this
   t.name = "SyntaxError"
