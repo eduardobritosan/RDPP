@@ -1,0 +1,69 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 700;
+ }
+#OUTPUT  {
+    background-color: white; 
+    width: 60%;
+}
+
+.landing-bar
+{
+	background-color: #009688;
+	height: 100px;
+	vertical-align: middle;
+	text-shadow: 1px 1px #9E9E9E;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.footer-bar
+{
+	background-color: #009688;
+	height: 75px;
+	vertical-align: center;
+	text-shadow: 1px 1px #9E9E9E;
+}
+
+div 
+{
+	.container-fluid 
+	{
+	   height: 10em;
+	   position: relative; 
+	   	h1 
+			{
+			   margin: 0;
+			   position: absolute;               /* 2 */
+			   top: 50%;                         /* 3 */
+			   left: 50%;
+			   margin-right: -50%;
+			   transform: translate(-50%, -50%) 
+			}
+	}             
+ /* 4 */
+
+	.text-footer
+	{
+	   height: 10em;
+	   position: relative;
+	   	p 
+			{
+			   margin: 0;
+			   position: absolute;               /* 2 */
+			   top: 50%;                         /* 3 */
+			   left: 50%;
+			   margin-right: -50%;
+			   transform: translate(-50%, -50%) 
+			}   /* 4 */ 
+	}             
+}

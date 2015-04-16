@@ -1,2 +1,54 @@
-h1= title
-p Welcome to #{title}
+doctype html
+html(lang ="en")
+	head
+		title= Parser
+		meta(charset='UTF-8')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js')
+		link(href="../public/stylesheets/bootstrap.min.css", rel="stylesheet")
+		link(rel='stylesheet', href='../public/stylesheets/style.css', type='text/css')
+	body
+		div.landing-bar.container-fluid
+			h1(style='color:white; text-align:center') Predictive Recursive Descent Parser 
+		div
+			textarea#original(autofocus='', cols='72', rows='5', align='center')
+		br
+		.loadfile
+			.btn_1
+				button#example1(type='button', onclick="dump('/examples/example1.txt');") Example 1
+			.btn_2
+				button#example2(type='button', onclick="dump('/examples/example2.txt');") Example 2
+			.btn_3
+				button#example3(type='button', onclick="dump('/examples/example3.txt');") Example 3
+			.btn_4
+				button#exampleerr(type='button', onclick="dump('/examples/example_err.txt');") Example_error
+			.btn_5
+				input#files(type='file')
+			.btn_parse
+				input#PARSE.mylink(value='Parse', type='button')
+
+		footer(id="footer")
+			div.navbar.navbar-default.navbar-fixed-bottom.footer-bar.text-center(style="color:white")
+				div.row
+					div.col-lg-12 
+						h4a(href="" style="color:white") Tests 
+		script(type='text/javascript').
+			function dump(fileName) {
+			$.get(fileName, function (data) {
+			$("#original").val(data);
+			});
+			};
+			document.getElementById('files').addEventListener('change', CopyMe, false);
+			function CopyMe(evt) {
+			var file = evt.target.files[0];
+			if (file) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+			original.innerHTML = e.target.result;
+			}
+			var c = reader.readAsText(file);
+			}
+			else { alert("Failed to load file"); }
+			}
+		hr
+		pre#OUTPUT.
