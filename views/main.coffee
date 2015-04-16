@@ -276,7 +276,7 @@ parse = (input) ->
         type: "IF"
         left: left
         right: right
-   else if lookahead and lookahead.type is "WHILE"
+    else if lookahead and lookahead.type is "WHILE"
       match "WHILE"
       left = condition()
       match "DO"
@@ -310,7 +310,7 @@ parse = (input) ->
       result
 
   expression = ->
-   result = term()
+    result = term()
     while lookahead and lookahead.type is "SUMRESOPERATORS"
       type = lookahead.value
       match "SUMRESOPERATORS"
