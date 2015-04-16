@@ -5,8 +5,8 @@ html(lang ="en")
 		meta(charset='UTF-8')
 		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
 		script(src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js')
-		link(href="RDPP/public/stylesheets/bootstrap.min.css", rel="stylesheet")
-		link(rel='stylesheet', href='RDPP/public/stylesheets/style.css', type='text/css')
+		link(href="public/stylesheets/bootstrap.min.css", rel="stylesheet")
+		link(rel='stylesheet', href='public/stylesheets/style.css', type='text/css')
 	body
 		div.landing-bar.container-fluid
 			h1(style='color:white; text-align:center') Predictive Recursive Descent Parser 
@@ -15,13 +15,13 @@ html(lang ="en")
 		br
 		.loadfile
 			.btn_1
-				button#example1(type='button', onclick="dump('RDPP/examples/example1.txt');") Example 1
+				button#example1(type='button', onclick="dump('examples/example1.txt');") Example 1
 			.btn_2
-				button#example2(type='button', onclick="dump('RDPP/examples/example2.txt');") Example 2
+				button#example2(type='button', onclick="dump('examples/example2.txt');") Example 2
 			.btn_3
-				button#example3(type='button', onclick="dump('RDPP/examples/example3.txt');") Example 3
+				button#example3(type='button', onclick="dump('examples/example3.txt');") Example 3
 			.btn_4
-				button#exampleerr(type='button', onclick="dump('RDPP/examples/example_err.txt');") Example_error
+				button#exampleerr(type='button', onclick="dump('examples/example_err.txt');") Example_error
 			.btn_5
 				input#files(type='file')
 			.btn_parse
