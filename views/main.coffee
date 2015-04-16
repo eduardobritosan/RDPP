@@ -105,10 +105,10 @@ String::tokens = ->
     else if m = tokens.STRING.bexec(this)
       result.push make("STRING", getTok().replace(/^["']|["']$/g, ""))
 
-    else if m = tokens.SUMRESOP.bexec(this)
+    else if m = tokens.SUMRESOPERATORS.bexec(this)
       result.push make("SUMRESOPERATORS", getTok())
 
-    else if m = tokens.MULTDIV.bexec(this)
+    else if m = tokens.MULTDIVOPERATORS.bexec(this)
       result.push make("MULTDIVOPERATORS", getTok())
 
     # comparison operator
@@ -310,8 +310,8 @@ parse = (input) ->
       result
 
   expression = ->
-    result = term()
-    while lookahead and lookahead.type is "SUMRESOPERATORS"
+   result = term()
+   while lookahead and lookahead.type is "SUMRESOPERATORS"
       type = lookahead.value
       match "SUMRESOPERATORS"
       right = term()
