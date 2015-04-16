@@ -1,4 +1,4 @@
-#Analizador Predictivo ![Travis is down?](https://travis-ci.org/eduardobritosan/RDPP.svg?branch=master)
+#Analizador Predictivo [![Travis is down?](https://travis-ci.org/eduardobritosan/RDPP.svg?branch=master)](https://travis-ci.org/eduardobritosan/RDPP)
 ##Made by:
 **Hector Rodriguez Perez** [Github Page](http://hecrp.github.io) | [GitHub account](http://www.github.com/hecrp)
 
@@ -9,5 +9,3 @@
 ##**[Link Heroku]()**
 
 ##**[Link GH Page]()**
-
-##**[Link GH Page | Tests]()**
